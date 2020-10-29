@@ -22,8 +22,6 @@ Array.isArray(prendas3); //devolverá true
 arrSimple = ["palabra1", "palabra2", "palabra3"];
 arrClonado = [...arrSimple];
 
-
-
 //Ejericio 4 Escribe una función capaz de borrar elementos duplicados del siguiente array.
 let array1 = ["Lunes","Martes","Miércoles","Lunes","Jueves","Viernes","Viernes","Sabado","Domingo"];
 let nombresSinRepetir = array1.filter( (item, pos, self) => {
@@ -62,19 +60,31 @@ const numPrimo = num => {
 mediante prompt y comprobará si el número introducido coincide con uno de los 5 generados aleatoriamente por el array. en caso de coincidir devolverá un 
 resolve, caso contrario reject. El espectro de los números tanto aleatorios como el introducido por el usuario será del 1 al 10. */
 
-let preguntaNum = parseInt(prompt("Introduce un número del 1 al 10", "1"), 10);
-const cincoNum = [];
 
-function sacarNumero(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min; //hago una función para que me devuelva un número aleatorio del 1 al 10 
+const sacarNum = (min, max) => Math.floor(Math.random());
+
+const foo = ()=> {
+  const arr = [];
+ 
+  for( let i = 0; i < 6; i++){
+    const num = getRandom(1,10);
+    arr.push(num);
   }
+  const userNum = parseInt(prompt('Introduce un número'));
+  const p = new Promise((resolve, reject)=>{
+    const included = arr.includes(userNum);
+    if (included) resolve ();
+    else reject();
+  });
+  return p;
+};
 
-for (let i = 0; i < 6; i++){ //creo un bucle para que me genere cinco veces el número aleatorio
-    cincoNum = sacarNumero (1, 10);
-}
+foo().then(()=> console.log('número encontrado')).catch(()=>console.log('número no encontrado'));
+  
+// const arr = [];
+//   for( let i = 0; i < 6; i++){
+//     const num = getRandom(1,10);
+//     arr = arr.push(num);
+//   }
+// }
 
-if (cincoNum.find(preguntaNum)){ //compruebo que el número coincida con alguno del array
-    console.log('el número coincide con los que estoy pensando'):
-}else{
-    console.log('el número no coincide con los que estoy pensando');
-}
